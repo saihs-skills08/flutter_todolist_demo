@@ -57,33 +57,34 @@ Widget todoItemBuilder(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      it.name,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    const SizedBox(height: 5),
-                    Row(
-                      children: it.tags
-                          .asMap()
-                          .entries
-                          .map(
-                            (entry) => Container(
-                              margin: const EdgeInsets.only(right: 10),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 2),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        it.name,
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      const SizedBox(height: 5),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 7,
+                        children: it.tags
+                            .asMap()
+                            .entries
+                            .map((entry) => Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 3, horizontal: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
                                   color: Color.fromRGBO(
-                                      200, 100, entry.key * 200, 0.6)),
-                              child: Text(entry.value),
-                            ),
-                          )
-                          .toList(),
-                    )
-                  ],
+                                      200, 100, (entry.key * 50) % 255, 0.6),
+                                ),
+                                child: Text(entry.value)))
+                            .toList(),
+                      )
+                    ],
+                  ),
                 ),
                 Material(
                   color: Colors.transparent,
